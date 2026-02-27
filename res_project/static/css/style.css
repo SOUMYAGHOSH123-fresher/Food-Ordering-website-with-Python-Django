@@ -1,0 +1,323 @@
+body{
+    background: rgb(151, 218, 226);
+    z-index: -1;
+}
+
+
+.main-section{
+    /* position: relative; */
+    width: 900px;
+    margin: 7% auto; 
+    box-shadow: -1px -1px 14px 14px #787272;
+}
+
+
+/* The "overlay" CSS property specifies whether an element appearing in the top layer ( */
+.section1::before {
+    content: '';
+    position: absolute;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: .6;
+}
+
+.section1{
+    position: relative;
+    background-image: url('https://images.pexels.com/photos/5034542/pexels-photo-5034542.jpeg');
+    /* background-clip: border-box; */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    background-position: left; 
+    border: 2px solid rgb(235, 228, 228);
+}
+
+/* .section1 .section-head{
+    position: relative;
+    z-index: 999;
+} */
+
+/* 
+.section1 nav{
+    padding-top: 10px;
+    
+
+}
+
+nav #brand{
+    float: left;
+    margin: 10px 40px;
+}
+
+nav .manus{
+    float: right;
+    margin: 30px;
+}
+
+nav .manus a{
+    color: white;
+    text-decoration: none;
+    padding: 0px 10px;
+} */
+
+
+.section1 .section-body{
+    margin: 10%;
+    text-align: center;
+    color: rgb(248, 243, 247);
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    z-index: 300;
+}
+
+.section1 .section-body p{
+    padding: 20px;
+    font-size: 1.2em;
+    color: rgb(245, 244, 249);
+}
+
+
+.section1 .section-body #button{
+    border: 2px outset rgb(108, 100, 100);
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: rgb(112, 247, 94);
+    color: rgb(10, 10, 10);
+    text-decoration: none;  
+}
+
+
+/* --------  section - 2 ------------- */
+.section2{
+    background-color: white;
+    margin-top: 0px;
+    padding: 10px 30px 40px;
+    text-align: center;
+}
+
+.section2 h2{
+    font-size: 2em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.section2 p{
+    color: #787272;
+    padding-bottom: 10px;
+}
+
+
+.section2 #button1{
+    border: 2px groove #ddd;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.section2 #button1:hover{
+    font-size: 1.2em;
+    background-color: aquamarine;
+}
+
+
+/* section - 3 */
+.section3{
+    background-color: #f3e8e8;
+    padding-top: 10px;
+}
+
+.section3 .boxes{
+    display: flex;
+    justify-content: center;
+}
+
+.section3 .boxes div{
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.section3 .boxes div h3{
+    font-size: 2em;    
+}
+
+.section3 .boxes div p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+}
+
+
+
+.section3 .boxes div:nth-child(odd){
+    background-color: rgb(92, 92, 213);
+}
+
+.section3 .boxes div:nth-child(even){
+    background-color: rgb(11, 10, 10);
+}
+
+
+/* ---------  section - 4  -------------- */
+.section4{
+    background-color: white;
+    padding: 20px 20px;
+    /* margin-bottom: 0px; */
+}
+
+.section4 h2, p{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 0px 10%;
+}
+
+
+.section4 .lists{
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px;
+}
+
+.section4 .lists span{
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* -------  section - 5  ------------ */
+
+.section5{
+    background-color: rgb(106, 62, 188);
+    color: white;
+}
+
+.section5 .picture{
+    display: grid;    
+    grid-template-columns: repeat(4, 1fr);
+    padding: 30px;
+}
+
+.section5 .picture div{
+    padding: 20px;
+}
+
+.section5 .picture span{
+    display: block;
+    padding: 0px 20px;
+    text-align: center;
+    color: #c5bdbd;
+}
+
+.section5 .picture .number{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ddd;
+}
+
+
+/* ------  section - 6  ------- */
+.section6::before{
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: .2;
+    top: 0;
+    left: 0;
+}
+
+.section6{
+    position: relative;
+    background-color: white;
+    padding-top: 5px;
+    text-align: center;
+    color: rgb(31, 91, 91);
+    z-index: 999;
+}
+
+.section6 .sec-head{
+    position: relative;
+    z-index: 999;
+}
+
+
+.section6 p{
+    color:#7c7979;
+    font-size: 1em;
+}
+
+.section6 ul{
+    list-style-type: none;
+    font-size: 0.8em;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.section6 ul li{
+    padding: 10px 20px;
+    /* border-bottom: 3px solid black; */
+}
+
+.section6 .images{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.section6 .images .i1{
+    display: flex;
+    justify-content: center;
+    /* padding: 20px; */
+}
+
+.section6 .images img{
+    width: 25%;
+    height: 25%;
+}
+
+
+
+/* -----  mobile size  --------------  */
+@media(width <= 400px){
+    .main-section{
+        width: 500px;
+        margin: 20px 30px;
+        box-shadow: -1px -1px 14px 14px #ef7070;
+    }
+
+    .section1 nav .manus{
+        display: none;
+    }
+
+    .section4 .lists{
+        font-size: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+    }
+
+    .section5 .picture{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px 20px;
+    }
+
+    .section5 .picture div{
+        padding: 20px 0px;
+    }
+
+    .section6 ul{
+        font-size: 1em;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

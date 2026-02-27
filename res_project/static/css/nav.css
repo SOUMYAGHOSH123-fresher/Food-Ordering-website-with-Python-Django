@@ -1,0 +1,46 @@
+
+.navbar .nav-link {
+    color: #333;
+}
+
+.navbar .nav-link:hover {
+    color: #dc3545;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+/* Remove dropdown arrow globally */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Enable hover dropdown */
+.profile-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+/* Smooth animation */
+.profile-dropdown .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    right: 10px !important;   /* distance from screen edge */
+    left: auto !important;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+footer a{
+    text-decoration: none;
+}
+

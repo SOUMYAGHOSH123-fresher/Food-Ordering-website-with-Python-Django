@@ -1,0 +1,66 @@
+/* LEFT CARD */
+.profile-left-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+/* PROFILE IMAGE */
+.profile-img-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: auto;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, #ff9800, #ff3d00);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+}
+
+/* CAMERA ICON */
+.upload-icon {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 38px;
+    height: 38px;
+    background: #ff3d00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.upload-icon:hover {
+    transform: scale(1.1);
+}
+
+/* RIGHT CARD */
+.profile-right-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+/* TABLE */
+.profile-table th {
+    width: 35%;
+    font-weight: 600;
+    color: #555;
+}
+
+.profile-table td {
+    color: #222;
+}

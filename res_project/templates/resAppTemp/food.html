@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+food
+{% endblock title %}
+
+
+{% block addlinks %}
+<link rel="stylesheet" href="{% static 'css/food.css' %}">
+
+{% endblock addlinks %}
+
+
+
+{% block content %}
+<div class="container-fluid bg-light text-dark pt-4">
+
+    <!-- HERO SECTION -->
+    <div class="container rounded shadow-lg mt-5 p-5 mb-5 hero-section">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div data-aos="fade-up">
+                    <h1 class="fw-bold display-5">
+                        Delicious Food Delivered <span class="text-danger">Fresh & Fast</span>
+                    </h1>
+                </div>
+                <p class="fs-5 fst-italic mt-3" data-aos="fade-down">
+                    Discover the best food from top restaurants and enjoy fast delivery at your doorstep.
+                </p>
+                <a href="#" class="btn btn-danger btn-lg mt-4 px-4">Order Now</a>
+            </div>
+
+            <div class="col-md-6 text-center " data-aos="zoom-in">
+                <img src="{% static 'images/burger.png' %}" class="img-fluid hero-img" alt="Burger">
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURED FOOD -->
+    <div class="container mb-5">
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="{% static 'images/food1.jpg' %}" class="img-fluid rounded" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="{% static 'images/food2.jpg' %}" class="img-fluid rounded" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="{% static 'images/images.jpeg' %}" class="img-fluid rounded" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORY SECTION -->
+    <div class="section2 text-start mt-3 px-4">
+        <h3 class="fw-bold h2 py-4">Choose the best food Category</h3>
+        <div class="pt-4">
+            <div class="row row-cols-5 m-3 py-3 pb-4">
+                {% for category in categories|slice:":12" %}
+                <div class="col-md-2 col-6 pb-4">
+                    <a href="{% url 'foodlist' category.id %}" class="text-decoration-none">
+                        <div class="category-card text-center">
+                            <img src="{{ category.cat_image.url }}" class="rounded-circle" width="150px" height="150px"
+                                alt="">
+                            <p class="mt-3 text-dark">{{ category.category }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------  Extra Section --------- -->
+    <div class="section3 container-fluid px-4">
+        <h2 class="fw-bold test-start">Choose Your table Enjoy Food</h2>
+        <div class="row text-center g-4 mt-3">
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg"
+                        class="img-fluid rounded" alt="">
+                </div>
+                <p class="mt-2">Dinner </p>
+            </div>
+
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="https://images.pexels.com/photos/12317827/pexels-photo-12317827.jpeg"
+                        class="img-fluid rounded" alt="">
+                </div>
+                <p class="mt-2">Lunch </p>
+            </div>
+
+            <div class="col-md-4">
+                <div class="food-card">
+                    <img src="https://images.pexels.com/photos/14646752/pexels-photo-14646752.jpeg"
+                        class="img-fluid rounded" alt="">
+                </div>
+                <p class="mt-2">With Family </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restaurant Image Section -->
+    <div class="container-fluid mt-5 px-4">
+        <h2 class="fw-bold text-start mb-4">
+            Discover best restaurants on Dineout
+        </h2>
+
+        <div class="row g-4">
+            {% for restaurant in restaurants %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+
+                <a href="{% url 'restaurant_detail' restaurant.id %}" class="text-decoration-none">
+                    <div class="card dineout-card border-0 shadow-lg h-100">
+                        <div class="position-relative image-wrapper rounded-top overflow-hidden">
+                            <img src="{{ restaurant.res_image.url }}" class="restaurant-img rounded-top" height="220"
+                                alt="{{ restaurant.restaurant_name }}">
+
+                            <!-- Gradient Overlay -->
+                            <div class="image-overlay"></div>
+
+                            <!-- Name & Rating -->
+                            <div class="position-absolute bottom-0 start-0 w-100 px-3 pb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="fw-bold fs-4 text-white mb-0 text-truncate" style="max-width: 70%;">
+                                        {{ restaurant.restaurant_name }}
+                                    </h6>
+                                    <span class="rating-badge glow">
+                                        ⭐ {{ restaurant.rating|default:"4.0" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between fe-bold text-bold small mb-2">
+                                <span>{{ restaurant.description | truncatechars:20 }}</span>
+                                <span>₹{{ restaurant.price }} for two</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-muted small mb-2">
+                                <span>{{ restaurant.address | truncatechars:30 }}</span>
+                                <span>{{ restaurant.distance|default:"2.5" }} km</span>
+                            </div>
+                            <a class="btn btn-outline-info rounded-4 text-dark border mb-2">
+                                🪑 Table booking
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

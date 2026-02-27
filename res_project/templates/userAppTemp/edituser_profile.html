@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+user profile
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100 mt-3">
+    <div class="col-md-6 mt-3">
+        <h2 class="text-center mb-4 text-dark">Update User Profile</h2>
+
+        {% if messages %}
+        <!-- <ul class="messages"> -->
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        <!-- </ul> -->
+        {% endif %}
+
+        <form action="" method="post" enctype="multipart/form-data" class="p-4 bg-primary text-light rounded shadow">
+            {% csrf_token %}
+
+            <!-- First Name -->
+            <div class="mb-3">
+                <label for="FnameInput" class="form-label">First Name</label>
+                <input type="text" id="FnameInput" class="form-control" value="{{profile.user.first_name}}" name="fname"
+                    required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-3">
+                <label for="LnameInput" class="form-label">Last Name</label>
+                <input type="text" id="LnameInput" class="form-control" value="{{profile.user.last_name}}" name="lname"
+                    required>
+            </div>
+
+            <!-- phone -->
+            <div class="mb-3">
+                <label for="InputPhone" class="form-label">Phone</label>
+                <input type="text" id="InputPhone" class="form-control" value="{{profile.user.phone}}" name="phone"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="LocationInput" class="form-label">Location</label>
+                <input type="text" id="LocationInput" class="form-control" value="{{profile.location}}" name="location"
+                    placeholder="Add the current address" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="BioInput" class="form-label">Bio</label>
+                <textarea id="BioInput" class="form-control" name="bio" value="{{profile.bio}}"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+                <!-- <button type="submit" class="btn btn-info">Cancal</button> -->
+                <a href="{% url 'userprofilepage' %}" class="btn btn-danger">Cancal</a>
+            </div>
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-info">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 py-3">
+
+    <!-- Restaurant / Food Header -->
+    <div class="container mt-5">
+
+        <!-- Header Card -->
+        <div class="card shadow-lg border-0 rounded-4 p-4 mb-4">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT -->
+                <div class="col-md-8">
+
+                    <h2 class="fw-bold">{{ food.item_name }}</h2>
+
+                    <div class="d-flex align-items-center gap-3 mt-2">
+
+                        <span class="badge bg-success px-3 py-2">
+                            ⭐ {{food.rating | default:"4.5"}} (1.6k+ ratings)
+                        </span>
+
+                        <span class="fw-semibold">
+                            ₹{{ food.price }} for one
+                        </span>
+
+                    </div>
+
+                    <p class="text-danger mt-2 fw-semibold">
+                        {{ food.category.category }}
+                    </p>
+
+                    <div class="mt-2 text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="{{food.restaurent.address}}">
+                        <p class="mb-1">📍 Outlet: {{food.restaurent.address | truncatechars:50 | default:"City Center" | safe}}</p>
+                        <p>⏱ 10–15 mins</p>
+                    </div>
+
+                    <hr>
+
+                    <p class="text-danger fw-semibold">
+                        🛵 Free delivery on orders above ₹199
+                    </p>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-md-4 text-center">
+
+                    <div class="position-relative d-inline-block">
+
+                        <img src="{{ food.item_image.url }}" class="rounded-4 shadow" width="200" height="150"
+                            style="object-fit:cover;">
+
+                        <a href="{% url 'addtocart' food.id %}"
+                            class="btn btn-light shadow fw-bold position-absolute bottom-0 start-50 translate-middle-x px-4 text-success">
+                            ADD
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- RECOMMENDED -->
+        <h4 class="fw-bold mb-3">Recommended ({{food_items|length}})<span class="fs-3">+</span></h4>
+
+        {% for item in food_items|slice:":5" %}
+
+        <div class="card border-0 border-bottom rounded-0 py-3">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT SIDE -->
+                <div class="col-md-8">
+
+                    {% if item.is_veg %}
+                    <span class="text-light bg-success">
+                        <i class="fa-solid fa-leaf"></i> Veg
+                    </span>
+                    {% else %}
+                    <span class="text-light bg-danger">
+                        <i class="fa-solid fa-leaf"></i>Non veg
+                    </span>
+                    {% endif %}
+
+                    <h5 class="fw-semibold">{{ item.item_name }}</h5>
+
+                    <p class="fw-bold">₹{{ item.price }}</p>
+
+                    <p class="text-muted small">
+                        {{ item.description|truncatechars:100 }}
+                    </p>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="col-md-4 text-center">
+
+                    <div class="position-relative">
+
+                        <img src="{{ item.item_image.url }}" class="rounded-4 shadow" width="150" height="120"
+                            style="object-fit:cover;">
+
+                        <!-- ADD BUTTON -->
+                        <a href="{% url 'addtocart' item.id %}"
+                            class="btn btn-light shadow fw-bold position-absolute bottom-0 start-50 translate-middle-x">
+                            ADD
+                        </a>
+
+                    </div>
+
+                    <small class="text-muted">Customisable</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+
+{% endblock content %}

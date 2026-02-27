@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}
+order food
+{% endblock title %}
+
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">Your Cart 🛒</h2>
+
+    {% if cart_items %}
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Price</th>
+                    <th>Item</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for item in cart_items %}
+
+                <tr>
+                    <td>
+                        <img src="{{item.product.item_image.url}}" width="50" class="rounded me-2">
+                        {{ item.product.item_name }}
+                    </td>
+                    <td>₹ {{ item.product.price }}</td>
+                    <td>
+                        <div class="d-flex align-items-center qty-box">
+
+                            <a href="{% url 'cartsdecrement' item.product.id %}" class="btn btn-outline-danger btn-sm">
+                                −
+                            </a>
+
+                            <span class="mx-3 fw-bold">
+                                {{ item.product_qty }}
+                            </span>
+
+                            <a href="{% url 'cartincrement' item.product.id %}" class="btn btn-outline-success btn-sm">
+                                +
+                            </a>
+
+                        </div>
+                    </td>
+                    <td>₹ {{ item.product_prc }}</td>
+                    <td>
+                        <a href="{% url 'deletecartitem' item.product.id %}" class="btn btn-sm btn-danger">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PRICE SUMMARY -->
+    <div class="col-lg-4 mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="mb-3 fw-bold">Price Details</h5>
+
+                <div class="d-flex justify-content-between">
+                    <span>Total Item{{ total_items|length| pluralize:'s'}}</span>
+                    <span>{{ total_items }}</span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <span>Delivery Charges</span>
+
+                    {% if total >= 99 %}
+                    <span class="text-success">Free</span>
+                    {% else %}
+                    <span class="text-success">₹15</span>
+                    {% endif %}
+
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between fw-bold fs-5">
+                    <span>Total</span>
+                    
+                    {% if total >= 99 %}
+                        <span class="text-danger">₹ {{ total }}</span>
+                    {% endif %}                        
+                        <span class="text-danger">₹ {{ total }}</span>
+                </div>
+
+                <a href="{% url 'checkout' %}" class="btn btn-danger w-100 mt-4">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+
+    {% else %}
+    <!-- EMPTY CART -->
+    <div class="text-center py-5">
+        <i class="fa-solid fa-cart-shopping fs-1 text-muted mb-3"></i>
+        <h4>Your cart is empty</h4>
+        <a href="{% url 'menu' %}" class="btn btn-danger mt-3">
+            Browse Menu
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

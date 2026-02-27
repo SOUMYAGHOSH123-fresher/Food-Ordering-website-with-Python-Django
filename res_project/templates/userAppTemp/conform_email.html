@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+conform email page
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-80">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4 text-dark">Confirm Your Email Address</h2>
+        <p class="text-center mb-3">
+            Unlock a world of rewards with one account across Expedia, Hotels.com, and Vrbo.
+        </p>
+
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+            {{ message }}
+        </div>  
+        {% endfor %}
+        {% endif %}
+
+        <form action="" method="post" class="p-4 bg-primary text-light rounded shadow">
+            {% csrf_token %}
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="EmailInput" class="form-label">Email</label>
+                <input type="email" id="EmailInput" class="form-control" name="conform_email"
+                    aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text text-light">
+                    Please enter a valid email address.
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-info">Conform Email</button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center">
+                Already registered? <a href="{% url 'loginpage' %}" class="text-light fw-bold">Login &raquo;</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

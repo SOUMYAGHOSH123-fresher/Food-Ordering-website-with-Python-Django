@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold">Order #{{ order.id }}</h4>
+            <small class="text-muted">
+                Placed on {{ order.created_at|date:"d M Y, h:i A" }}
+            </small>
+        </div>
+
+        <span class="badge fs-6
+            {% if order.payment_status == 'DELIVERED' %}bg-success
+            {% elif order.payment_status == 'CANCELLED' %}bg-danger
+            {% elif order.payment_status == 'PROCESSING' %}bg-warning
+            {% else %}bg-secondary{% endif %}
+        ">
+            {{ order.payment_status }}
+        </span>
+    </div>
+
+    <!-- ITEMS -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">🍽 Items</h5>
+
+            {% for orderitem in order.orders.all %}
+            <div class="d-flex justify-content-between border-bottom py-2">
+                <div>
+                    <p class="mb-0 fw-semibold">{{ orderitem.item.item_name }}</p>
+                    <small class="text-muted">
+                        Qty: {{ orderitem.quantity }}
+                    </small>
+                </div>
+                <div class="fw-bold">
+                    ₹{{ orderitem.price|floatformat:2 }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- PRICE SUMMARY -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">💳 Price Summary</h5>
+
+            <div class="d-flex justify-content-between">
+                <span>Subtotal</span>
+                <span>₹{{ order.total_amount }}</span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <span>Delivery</span>
+                
+                {% if order.total_amount >= 199 %}
+                    <span class="text-success">FREE</span>
+                {% else %}
+                    <span class="text-success">{{ order.total_amount|add:'15' }}</span>
+                {% endif %}
+                    
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-between fw-bold fs-5">
+                <span>Total Paid</span>
+                <span class="text-danger">₹{{ order.total_amount|floatformat:'2' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT INFO -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">📄 Payment Info</h5>
+
+            <p class="mb-1">
+                <strong>Razorpay Order ID:</strong>
+                {{ order.razorpay_order_id }}
+            </p>
+
+            {% if order.razorpay_payment_id %}
+            <p class="mb-0">
+                <strong>Payment ID:</strong>
+                {{ order.razorpay_payment_id }}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="d-flex gap-2">
+        <a href="{% url 'order' %}" class="btn btn-outline-secondary">
+            ← Back to Orders
+        </a>
+
+        <a href="" class="btn btn-danger">
+            Re-order
+        </a>
+    </div>
+
+</div>
+
+{% endblock content %}

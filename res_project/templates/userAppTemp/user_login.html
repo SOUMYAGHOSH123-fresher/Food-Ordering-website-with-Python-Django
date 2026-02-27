@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+login page
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-80">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4 text-dark">User Login Form</h2>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+                {{ message }}
+                </li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="" method="post" class="p-4 bg-primary text-light rounded shadow">
+            {% csrf_token %}
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="EmailInput" class="form-label">Email</label>
+                <input type="email" id="EmailInput" class="form-control" name="email" aria-describedby="emailHelp"
+                    required>
+                <div id="emailHelp" class="form-text text-light">
+                    Please enter a valid email address.
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="InputPassword1" class="form-label">Password</label>
+                <input type="password" id="InputPassword1" class="form-control" name="password"
+                    aria-describedby="PasswordHelp" required>
+                <div id="PasswordHelp" class="form-text text-light">
+                    Your password must be 8–20 characters long
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-info">SignIn</button>
+            </div>
+
+            <!-- Login Link -->
+            <!-- Links -->
+            <div class="text-start mt-3">
+                <a href="{% url 'conformemailpage' %}" class="text-light fw-bold">Forgot Password?</a><br>
+
+            </div>
+
+            <div class="text-start">
+                New User? <a href="{% url 'registerpage' %}" class="text-light fw-bold">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

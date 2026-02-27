@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container mt-4 pt-4">
+
+    <!-- Banner Image -->
+    <div class="position-relative rounded-4 overflow-hidden mb-4">
+        <img src="{{ restaurant.res_image.url }}" class="w-100" height="350" style="object-fit:cover;">
+
+        <div class="image-overlay"></div>
+
+        <div class="position-absolute bottom-0 start-0 p-4 text-white">
+            <h2 class="fw-bold mb-1">{{ restaurant.restaurant_name }}</h2>
+            <span class="badge bg-success fs-6">
+                ⭐ {{ restaurant.rating|default:"4.0" }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="row">
+
+        <!-- Left -->
+        <div class="col-lg-8">
+
+            <p class="text-muted">
+                📍 {{ restaurant.address }}
+            </p>
+
+            <p>
+                {{ restaurant.description }}
+            </p>
+
+            <div class="d-flex gap-3 mt-3">
+                <span class="badge bg-light text-dark border">
+                    🍽 ₹{{ restaurant.price }} for two
+                </span>
+                <span class="badge bg-light text-dark border">
+                    🪑 Table Booking Available
+                </span>
+            </div>
+
+            <!-- Offers -->
+            <div class="mt-4">
+                <div class="offer-pill mb-2">
+                    🎉 Flat {{ restaurant.discount|default:"20" }}% off on pre-booking
+                </div>
+                <div class="bank-offer-pill">
+                    💳 Up to 10% off with bank offers
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm rounded-4 p-3">
+                <h5 class="fw-bold">Book a Table</h5>
+                <p class="text-muted small">Instant confirmation</p>
+
+                <button class="btn btn-success w-100 fw-bold mt-2">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

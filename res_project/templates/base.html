@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    {% block addlinks %}
+    {% endblock addlinks %}
+
+
+    <title>
+        {% block title %}
+        title
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <!-- Fixed Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-lg">
+        <div class="container-fluid mx-3">
+
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold text-danger" href="/">
+                🍽 Foodify
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- LEFT LINKS -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'food' %}">Food</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Restaurant</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            More
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Offers</a></li>
+                            <li><a class="dropdown-item" href="#">Events</a></li>
+                            <li><a class="dropdown-item" href="#">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- SEARCH -->
+                <form class="d-flex me-3">
+                    <input class="form-control rounded-pill me-2" type="search" name="search" value="{{search}}"
+                        placeholder="Search food or restaurant">
+                    <button class="btn btn-outline-danger rounded-pill" type="submit">
+                        Search
+                    </button>
+                </form>
+
+                <!-- CART -->
+                <a href="{% url 'cart' %}" class="btn position-relative me-3">
+                    <i class="fa-solid fa-cart-shopping fs-5 text-dark"></i> Cart
+                    <!-- {% if cart_count > 0 %}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ cart_count }}
+                    </span>
+                    {% endif %} -->
+                </a>
+
+                <!-- AUTH / PROFILE -->
+                {% if user.is_authenticated %}
+                <div class="dropdown profile-dropdown me-3">
+                    <a class="d-flex align-items-center text-dark text-decoration-none" href="#" id="profileDropdown">
+
+                        {% if user.profile.profile_image %}
+                        <img src="{{user.profile.profile_image.url}}" alt="" width="30px" height="30px"
+                            class="rounded-circle">{{user.first_name}}
+                        
+                        {% else %}
+                        <i class="fa-solid fa-user-circle fs-2 me-2"></i>
+                        {% endif %}
+
+
+                        <!-- <span class="fw-semibold">{{ user.first_name }}</span> -->
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow me-3">
+                        <li><a class="dropdown-item" href="{% url 'userprofilepage' %}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'order' %}">Orders</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'logoutpage' %}">
+                                Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <a href="{% url 'loginpage' %}" class="btn btn-outline-dark me-2 rounded-pill">
+                    Sign In
+                </a>
+                <a href="{% url 'registerpage' %}" class="btn btn-danger rounded-pill">
+                    Sign Up
+                </a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- ---------  body section   --------- -->
+    <div class="container-fluid mt-5 p-0">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+
+    <!-- ---------  footer section   ----------- -->
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 pt-4">
+
+        <!-- Social Media -->
+        <section class="d-flex justify-content-center justify-content-lg-between px-4 pb-3 border-bottom border-light">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Right -->
+            <div>
+                <a href="#" class="me-4 text-light"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-4 text-light"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="me-4 text-light"><i class="fab fa-google"></i></a>
+                <a href="#" class="me-4 text-light"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/saravanan-b-datascientist/" class="me-4 text-light"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/SaravananSuriya" class="me-4 text-light"><i class="fab fa-github"></i></a>
+            </div>
+        </section>
+
+        <!-- Links -->
+        <section class="mx-3">
+            <div class="container-fluid text-start text-md-start mt-4">
+                <div class="row mt-3">
+
+                    <!-- Company Info -->
+                    <div class="col-md-3 col-lg-3 col-xl-4 mb-4 mt-3">
+                        <h6 class="text-uppercase fw-bold mb-3">
+                            🍽 Foodify
+                        </h6>
+                        <p>
+                            Welcome to our food app! We offer a wide range of delicious categories
+                            including flavorful chaat items, quick fast foods, indulgent junk foods, refreshing
+                            beverages, crispy snacks, and mouth-watering sweets & bakery treats.
+                        </p>
+                    </div>
+
+                    <!-- Products -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-3">Products</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="" class=" text-reset text-light">Sweets</a></li>
+                            <li><a href="" class="text-reset text-light">Cake</a></li>
+                            <li><a href="" class="text-reset text-light">Chinese</a></li>
+                            <li><a href="" class="text-reset text-light">South Indian</a></li>
+                            <li><a href="" class="text-reset text-light">Non Veg</a></li>
+                            <li><a href="" class="text-reset text-light">Veg Food</a></li>
+                            <li><a href="" class="text-reset text-light">Korean Food</a></li>
+                        </ul>
+                    </div>
+
+
+                    <!-- Available Place -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-3">Available In</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="" class=" text-reset text-light">Banglore</a></li>
+                            <li><a href="" class="text-reset text-light">Pune</a></li>
+                            <li><a href="" class="text-reset text-light">Delhi</a></li>
+                            <li><a href="" class="text-reset text-light">Chennai</a></li>
+                            <li><a href="" class="text-reset text-light">Hyderabad</a></li>
+                            <li><a href="" class="text-reset text-light">Mumbai</a></li>
+                            <li><a href="" class="text-reset text-light">Gujrat</a></li>
+                            <li><a href="" class="text-reset text-light">Assam</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Help & Support -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-3">Help</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="" class=" text-reset text-light">Help</a></li>
+                            <li><a href="" class="text-reset text-light">Support</a></li>
+                            <li><a href="" class="text-reset text-light">Partner with us</a></li>
+                            <li><a href="" class="text-reset text-light">Ride with us</a></li>
+                            <li><a href="" class="text-reset text-light">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-md-2 col-lg-3 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-3">Contact</h6>
+                        <p><i class="fas fa-home me-2"></i> R.K.PET - 631303</p>
+                        <p><i class="fas fa-envelope me-2"></i> foodify@gmail.com</p>
+                        <p><i class="fas fa-phone me-2"></i> +91 xxxxxxx090</p>
+                        <p><i class="fas fa-print me-2"></i> +91 xxxxxxx082</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Copyright -->
+        <div class="text-center py-3 border-top border-light" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2026 Copyright:
+            <a class="text-reset fw-bold" href="#">foodify.in</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+</body>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</html>

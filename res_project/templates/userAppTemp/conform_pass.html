@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+conform email page
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4 text-dark">Forget Password Form</h2>
+        <p class="text-center mb-3">
+            Unlock a world of rewards with one account across Expedia, Hotels.com, and Vrbo.
+        </p>
+
+        {% if messages %}
+        <!-- <ul class="messages"> -->
+            {% for message in messages %}
+            <div{% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+                {{ message }}
+        </div>
+                {% endfor %}
+        <!-- </ul> -->
+        {% endif %}
+
+        <form action="" method="post" class="p-4 bg-primary text-light rounded shadow">
+            {% csrf_token %}
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="EmailInput" class="form-label">Email</label>
+                <input type="email" id="EmailInput" class="form-control" name="email" aria-describedby="emailHelp"
+                    value="{{email}}" required disabled>
+            </div>
+
+            <!-- New Password -->
+            <div class="mb-3">
+                <label for="InputPassword1" class="form-label">New Password</label>
+                <input type="password" id="InputPassword1" class="form-control" name="new_password"
+                    aria-describedby="PasswordHelp" required>
+                <div id="PasswordHelp" class="form-text text-light">
+                    Enter a strong password
+                </div>
+            </div>
+
+            <!-- conform Password -->
+            <div class="mb-3">
+                <label for="InputPassword1" class="form-label">Password</label>
+                <input type="password" id="InputPassword1" class="form-control" name="confor_password"
+                    aria-describedby="PasswordHelp" required>
+                <div id="PasswordHelp" class="form-text text-light">
+                    Enter password again
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-info">Password conform</button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center">
+                New User <a href="{% url 'conformemailpage' %}" class="text-light fw-bold">Back &raquo;</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

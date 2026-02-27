@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+register
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100 mt-3">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4 text-dark">Add New Category</h2>
+
+        {% if messages %}
+        <!-- <ul class="messages"> -->
+        {% for message in messages %}
+        <div{% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    <!-- </ul> -->
+    {% endif %}
+
+    <form action="" method="post" class="p-4 bg-primary text-light rounded shadow">
+        {% csrf_token %}
+
+        <!-- First Name -->
+        <div class="mb-3">
+            <label for="FnameInput" class="form-label">Category Name</label>
+            <input type="text" id="FnameInput" class="form-control" name="category" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="formFileDisabled" class="form-label">Add the image</label>
+            <input class="form-control" type="file" name="image" id="formFileDisabled">
+        </div>
+
+        <div class="mb-3">
+            <label for="LnameInput" class="form-label">Comes Under</label>
+            <input type="text" id="LnameInput" class="form-control" name="options" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-info">Add</button>
+        </div>
+
+    </form>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block addlinks %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock addlinks %}
+
+
+{% block title %}
+home page
+{% endblock title %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="section1">
+            <div class="section-body">
+                <h1 data-aos="fade-up" data-aos-anchor-placement="bottom-bottom"
+                    style="font-size: 3em;color: rgb(230, 222, 222); text-shadow: -2px 6px 2px #3ee92ed4;">Travel For
+                    Happy Life
+                </h1>
+                <p data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores quia ad minus, suscipit quidem
+                    itaque voluptate quis nostrum! Expedita, laudantium corrupti. Vel ullam accusamus quod maiores
+                    sapiente temporibus soluta corrupti.
+                </p>
+                <a href="" id="button">Get Started </a>
+            </div>
+        </div>
+        <section class="section2">
+            <h2 data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">Welcome to Our Website</h2>
+            <p data-aos="fade-down" data-aos-anchor-placement="bottom-center">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Delectus possimus
+                nihil itaque qui, sunt
+                voluptatum mollitia doloremque nesciunt, ea culpa incidunt alias necessitatibus! Sequi consequatur,
+                exercitationem obcaecati velit perferendis expedita.
+                Enim adipisci veritatis, voluptas facere iusto sunt dolores ipsa aut ad impedit dicta esse vitae, saepe
+                repudiandae eligendi! Explicabo animi exercitationem molestiae sunt, dignissimos modi magni tempore
+                laborum maxime sequi.
+                Recusandae ut quod minima vero aspernatur quo iusto aliquid, unde blanditiis delectus est sapiente nihil
+                obcaecati animi ipsam distinctio nobis rem! Consequatur quas vitae tempore placeat optio, velit sunt
+                dolore?
+            </p>
+            <a data-aos="fade-up-left" data-aos-easing="linear" data-aos-duration="1500" href="" id="button1">
+                Get Started
+            </a>
+        </section>
+        <section class="section3">
+            <div class="boxes">
+                <div id="box1" data-aos="zoom-out-right">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M401 0q-83 0-156-31.5t-127.5-86Q63-172 31.5-245T0-400q0-83 31.5-156t86-127.5Q172-738 245-769.5T401-801q10 0 19.5.5T440-799v80q-10-1-19.5-1.5T401-721q-134 0-227.5 93.5T80-400q0 133 93.5 226.5T401-80q133 0 226.5-93.5T721-400h80q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T401 0Zm131-212L360-384v-216h80v184l148 148-56 56Zm342-268q-23-142-120-246.5T520-866v-82q171 37 290.5 165T955-480h-81Zm-163 0q-19-75-69.5-132T520-698v-85q103 32 177 113.5T793-480h-82Z" />
+                        </svg></span>
+                    <h3>Our Story</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat repudiandae nobis facere
+                        dolorum impedit, temporibus ut iure ratione obcaecati tempore, fugiat illum quaerat? In
+                        distinctio officiis doloremque fugiat sapiente quidem.
+                    </p>
+                </div>
+                <div id="box2" data-aos="zoom-out-down">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-80q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-80q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Z" />
+                        </svg></span>
+                    <h3>Our Misson</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat repudiandae nobis facere
+                        dolorum impedit, temporibus ut iure ratione obcaecati tempore, fugiat illum quaerat? In
+                        distinctio officiis doloremque fugiat sapiente quidem.</p>
+                </div>
+                <div id="box3" data-aos="zoom-out-left">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                        </svg></span>
+                    <h3>Our Vision</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat repudiandae nobis facere
+                        dolorum impedit, temporibus ut iure ratione obcaecati tempore, fugiat illum quaerat? In
+                        distinctio officiis doloremque fugiat sapiente quidem.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section4">
+            <h2 data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="500"
+                style="font-size: 2em;">Our Services</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi quisquam repellat fugit numquam
+                nesciunt laborum, dignissimos rem repudiandae fugiat unde perspiciatis adipisci deleniti omnis
+                voluptatem officiis ea consequuntur expedita earum.</p>
+            <div class="lists">
+                <span data-aos="fade-down-left"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M0-160v-80h80v-600h800v600h80v80H0Zm400-80h160v-40H400v40ZM160-360h640v-400H160v400Zm320-200Z" />
+                    </svg>Web Design</span>
+                <span data-aos="fade-down-right"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M320-120v-80h80v-80H160q-33 0-56.5-23.5T80-360v-400q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v400q0 33-23.5 56.5T800-280H560v80h80v80H320ZM160-360h640v-400H160v400Zm0 0v-400 400Z" />
+                    </svg>Web Development</span>
+                <span data-aos="fade-up-left"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M480-480ZM370-80l-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-74 56q-22-11-45-18.5T714-558l63-48-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q17 17 36.5 30.5T400-275q1 57 23.5 107T484-80H370Zm41-279q6-20 14.5-38.5T445-433q-11-8-17-20.5t-6-26.5q0-25 17.5-42.5T482-540q14 0 27 6.5t21 17.5q17-11 35-19.5t38-13.5q-18-32-50-51.5T482-620q-59 0-99.5 41T342-480q0 38 18.5 70.5T411-359Zm269 199 120-120-120-120-28 28 72 72H560v40h163l-71 72 28 28Zm0 80q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80Z" />
+                    </svg>Theme Development</span>
+
+                <span data-aos="fade-up-right"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M162-520h114q-6-38-23-71t-43-59q-18 29-30.5 61.5T162-520Zm522 0h114q-5-36-17.5-68.5T750-650q-26 26-43 59t-23 71ZM210-310q26-26 43-59t23-71H162q5 36 17.5 68.5T210-310Zm540 0q18-29 30.5-61.5T798-440H684q6 38 23 71t43 59ZM358-520h82v-278q-53 8-98.5 29.5T260-712q39 38 64.5 86.5T358-520Zm162 0h82q8-57 33.5-105.5T700-712q-36-35-81.5-56.5T520-798v278Zm-80 358v-278h-82q-8 57-33.5 105.5T260-248q36 35 81.5 56.5T440-162Zm80 0q53-8 98.5-29.5T700-248q-39-38-64.5-86.5T602-440h-82v278Zm-40-318Zm0 400q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
+                    </svg>Game Design</span>
+                <span data-aos="flip-down"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M419-80q-28 0-52.5-12T325-126L107-403l19-20q20-21 48-25t52 11l74 45v-328q0-17 11.5-28.5T340-760q17 0 29 11.5t12 28.5v472l-97-60 104 133q6 7 14 11t17 4h221q33 0 56.5-23.5T720-240v-160q0-17-11.5-28.5T680-440H461v-80h219q50 0 85 35t35 85v160q0 66-47 113T640-80H419ZM167-620q-13-22-20-47.5t-7-52.5q0-83 58.5-141.5T340-920q83 0 141.5 58.5T540-720q0 27-7 52.5T513-620l-69-40q8-14 12-28.5t4-31.5q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 17 4 31.5t12 28.5l-69 40Zm335 280Z" />
+                    </svg>App Design</span>
+                <span data-aos="flip-left"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M320-120v-80h80v-80H160q-33 0-56.5-23.5T80-360v-400q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v400q0 33-23.5 56.5T800-280H560v80h80v80H320ZM160-360h640v-400H160v400Zm0 0v-400 400Z" />
+                    </svg>Destop Design</span>
+
+                <span data-aos="flip-up"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960"
+                        width="40px" fill="#0d0c0c">
+                        <path
+                            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560L200-200Zm481-120H481v-60h200v60ZM220-600h80v80h60v-80h80v-60h-80v-80h-60v80h-80v60Z" />
+                    </svg>Wordpress Theme</span>
+                <span data-aos="flip-right"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-400Zm-180 40q25 0 42.5-17.5T360-500q0-25-17.5-42.5T300-560q-25 0-42.5 17.5T240-500q0 25 17.5 42.5T300-440Zm360 0q25 0 42.5-17.5T720-500q0-25-17.5-42.5T660-560q-25 0-42.5 17.5T600-500q0 25 17.5 42.5T660-440ZM360-260q25 0 42.5-17.5T420-320q0-25-17.5-42.5T360-380q-25 0-42.5 17.5T300-320q0 25 17.5 42.5T360-260Zm240 0q25 0 42.5-17.5T660-320q0-25-17.5-42.5T600-380q-25 0-42.5 17.5T540-320q0 25 17.5 42.5T600-260ZM420-600h120q26 0 43-17t17-43q0-26-17-43t-43-17H420q-26 0-43 17t-17 43q0 26 17 43t43 17Zm60 440q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z" />
+                    </svg>Wordpress Plugin</span>
+                <span data-aos="flip-down"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+                        viewBox="0 -960 960 960" width="40px" fill="#0d0c0c">
+                        <path
+                            d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80ZM364-182l48-110q-42-15-72.5-46.5T292-412l-110 46q23 64 71 112t111 72Zm-72-366q17-42 47.5-73.5T412-668l-46-110q-64 24-112 72t-72 112l110 46Zm188 188q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm116 178q63-24 110.5-71.5T778-364l-110-48q-15 42-46 72.5T550-292l46 110Zm72-368 110-46q-24-63-71.5-110.5T596-778l-46 112q41 15 71 45.5t47 70.5Z" />
+                    </svg>Support & IT</span>
+
+            </div>
+        </section>
+        <section class="section5">
+            <div class="picture">
+                <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
+                        </svg></span>
+                    <span class="number">12+</span>
+                    <span>Year of Experience</span>
+                </div>
+                <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                        </svg>
+                    </span>
+                    <span class="number">999+</span>
+                    <span>Complete Project</span>
+                </div>
+                <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M220-464 64-620l156-156 156 156-156 156ZM360-80v-200q-61-5-121-14.5T120-320l20-80q84 23 168.5 31.5T480-360q87 0 171.5-8.5T820-400l20 80q-59 16-119 25.5T600-280v200H360ZM220-576l44-44-44-44-44 44 44 44Zm260-104q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0 280q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-360q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Zm202 280-68-120 68-120h136l68 120-68 120H682Zm46-80h44l22-40-22-40h-44l-22 40 22 40Zm-508-60Zm260-180Zm270 200Z" />
+                        </svg>
+                    </span>
+                    <span class="number">500+</span>
+                    <span>Total Clints</span>
+                </div>
+                <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#FFFFFF">
+                            <path
+                                d="m480-120.67-46.67-42q-104.18-95.08-172.25-164.04Q193-395.67 152.67-450.17q-40.34-54.5-56.5-99.16Q80-594 80-640q0-91.44 61.33-152.72 61.34-61.28 152-61.28 55.34 0 103.34 25.33 48 25.34 83.33 72.67 39.33-49.33 86.33-73.67 47-24.33 100.34-24.33 90.66 0 152 61.28Q880-731.44 880-640q0 46-16.17 90.67-16.16 44.66-56.5 99.16-40.33 54.5-108.41 123.46-68.07 68.96-172.25 164.04l-46.67 42Zm0-88.66q99.49-90.67 163.75-155.5Q708-429.67 745.67-478.17q37.66-48.5 52.66-86.42t15-75.31q0-64.1-41.33-105.77-41.33-41.66-105.18-41.66-50.02 0-92.59 29.83-42.56 29.83-65.56 81.5h-58q-22.34-51-64.9-81.17-42.57-30.16-92.59-30.16-63.85 0-105.18 41.66-41.33 41.67-41.33 105.88 0 37.46 15 75.62 15 38.17 52.66 87Q252-428.33 316.67-363.83q64.66 64.5 163.33 154.5Zm0-289Z" />
+                        </svg>
+                    </span>
+                    <span class="number">12+</span>
+                    <span>Award Won</span>
+                </div>
+            </div>
+        </section>
+        <section class="section6">
+            <div class="sec-head">
+                <h2 data-aos="fade-zoom-up" data-aos-anchor-placement="center-bottom"
+                    style="font-size: 2.5em;font-weight: 900px;">Our Portfolio</h2>
+                <p data-aos="zoom-out-down">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, repellat aliquam! Suscipit
+                    pariatur ea sit recusandae quia facere enim aspernatur, culpa consequatur beatae amet incidunt qui,
+                    impedit deserunt saepe molestias!
+                </p>
+                <ul>
+                    <li data-aos="fade-up-left" data-aos-anchor-placement="bottom-center">ALL</li>
+                    <li data-aos="fade-up-right" data-aos-anchor-placement="bottom-center">WEB DEVELOPMENT</li>
+                    <li data-aos="fade-up" data-aos-anchor-placement="center-center">APP DEVELOPMENT</li>
+                    <li data-aos="fade-down" data-aos-anchor-placement="center-center">GAME DEVELOPMENT</li>
+                </ul>
+                <div class="images">
+                    <div data-aos="zoom-out-down" class="i1">
+                        <img src="./Soumya.jpg" alt="">
+                        <img src="./Soumya.jpg" alt="">
+                        <img src="./Soumya.jpg" alt="">
+                    </div>
+                    <div data-aos="zoom-out-up" class="i1">
+                        <img src="./Soumya.jpg" alt="">
+                        <img src="./Soumya.jpg" alt="">
+                        <img src="./Soumya.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock content %}

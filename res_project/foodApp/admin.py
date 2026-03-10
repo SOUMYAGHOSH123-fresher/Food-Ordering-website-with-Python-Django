@@ -4,8 +4,10 @@ from .models import Category, Items, Cart, CartItem, Order, OrderItem
 
 class ItemAdmin(admin.ModelAdmin):
     list_filter = ('category',)
-    ordering = ['item_name']
+    ordering = ['item_name', '-price']
     list_per_page = 10
+    list_select_related = ['category', 'restaurent']
+    # preserve_filters = False  
 
 # Register your models here.
 admin.site.register(Category)

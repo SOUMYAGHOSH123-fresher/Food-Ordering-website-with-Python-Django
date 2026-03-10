@@ -172,7 +172,6 @@ def optValidationView(request):
     return render(request, 'userAppTemp/otpValidationForm.html', {'email': email})
 
 
-
 def ConformPasswordView(request):
     conform_email = request.GET.get('email')
     if request.method == 'POST':
@@ -232,7 +231,6 @@ def ConformPasswordView(request):
             return render(request, 'userAppTemp/conform_pass.html')
         
     return render(request, 'userAppTemp/conform_pass.html', {'email': conform_email})
-
 
 
 
@@ -328,5 +326,6 @@ def update_profile_image(request):
         return redirect('userprofilepage')
     
     return render(request, 'userAppTemp/user_profile.html')
+
 
 

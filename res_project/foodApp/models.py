@@ -38,10 +38,10 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='carts')
     product = models.ForeignKey(Items, on_delete=models.CASCADE)
     product_qty= models.PositiveIntegerField(default=1)
     product_prc = models.FloatField(blank=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='carts')
 
     def __str__(self):
         return self.product.item_name

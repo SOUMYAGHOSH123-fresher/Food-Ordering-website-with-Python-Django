@@ -37,7 +37,7 @@
             <!-- ITEMS PREVIEW -->
             <div class="row">
                 <div class="col-md-8">
-                    {% for orderitem in order.orders.all %}
+                    {% for orderitem in order.orders.all|slice:":2" %}
                     <p class="mb-1">
                         🍽 {{ orderitem.item.item_name }} - {{ orderitem.quantity }}
                     </p>

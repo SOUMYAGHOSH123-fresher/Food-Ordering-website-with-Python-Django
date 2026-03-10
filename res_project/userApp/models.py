@@ -75,7 +75,9 @@ class CustomUser(AbstractUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
     
-
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}".capitalize()
 
 
 

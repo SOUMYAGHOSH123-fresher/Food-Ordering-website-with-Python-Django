@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from restaurantApp.models import Restaurant
+from userApp.models import CustomUser
 import razorpay
 
 
@@ -15,7 +16,7 @@ import razorpay
 def categoryList(request):
     categories = Category.objects.prefetch_related('items')
     print(categories)
-    restaurants = Restaurant.objects.all().order_by('-created_at')[:3]
+    restaurants = Restaurant.objects.prefetch_related('items').order_by('-created_at')[:3]
     context={'categories': categories, 'restaurants': restaurants}
     return render(request, 'resAppTemp/food.html', context)
 
@@ -40,14 +41,6 @@ def categoryFoodList(request, category_id):
     search = request.GET.get('search', "").strip()
     # print(search)
 
-    if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user).first()
-        # print(cart.user.first_name, type(cart))
-        if cart:
-            cart_items = cart.carts.all()
-        # print(cart_items)
-    # # print(cart_items.count())
-
     try:
         category = Category.objects.get(id=category_id)
 
@@ -66,8 +59,6 @@ def categoryFoodList(request, category_id):
     context = {
         'foods': foods, 
         'category': category, 
-        'cart_items': cart_items, 
-        'cart': cart, 
         'search':search
         }
     return render(request, 'resAppTemp/food_collection.html', context)
@@ -89,18 +80,12 @@ def menuItemsView(request):
 # ----------------   cart related logincs  --------------------
 
 def CartListView(request):
-    # cart = Cart.objects.get_or_create(user=request.user)
-    # food = request.GET.get('food')
-    # # print(food)
-    # food_items  = Items.objects.filter(category=food)[:5]
-    # # print(food_items)
-
     cart=[]
     if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user).first()
+        cart, created = Cart.objects.get_or_create(user=request.user)
     # print(cart.user)
-    if cart:
-        cart_items = cart.carts.all()
+    if not created:
+        cart_items = cart.carts.select_related('product')
         total_price = sum(item.product.price * item.product_qty for item in cart_items)
         total_items = sum(item.product_qty for item in cart_items)
         # print("total_items", total_items)
@@ -175,7 +160,6 @@ def decrease_cart(request, food_id):
     return redirect('cart')
 
 
-
 def deleteCartItem(request, food_id):
     food = get_object_or_404(Items, id=food_id)
     cart = get_object_or_404(Cart, user=request.user)
@@ -186,13 +170,10 @@ def deleteCartItem(request, food_id):
     return redirect('cart')
 
 
-
+@login_required(login_url='loginpage')
 def checkout(request):
-    if not request.user.is_authenticated:
-        return redirect("loginpage")
-
     cart = Cart.objects.filter(user=request.user).first()
-    print('cart', cart.user)
+    # print('cart', cart.user)
 
     if not cart or cart.carts.count() == 0:
         messages.error(request, "No active cart found")
@@ -200,8 +181,7 @@ def checkout(request):
         return redirect("cart")
 
     items = cart.carts.select_related('product').all()
-    print(items)
-    total = sum(i.product.price * i.product_qty for i in items)
+    total = cart.total
 
     if total <= 0:
         messages.error(request, "Your cart is empty")
@@ -219,24 +199,19 @@ def checkout(request):
     })
 
     print('payment ID', payment['id'])
+    print(payment)
+  
 
-    order = Order.objects.create(
-        user= request.user,
-        razorpay_order_id = payment['id'],
-        total_amount = total,
-        payment_status = "PROCESSING"
+    callback_url = request.build_absolute_uri(
+        reverse("payment_success", args =[request.user.id])
     )
-
-    # print(order)
-
-    callback_url = request.build_absolute_uri(reverse("payment_success", args =[order.id]))
     callback_url = callback_url.replace('https://', 'http://') 
     print(f"Callback URL: {callback_url} ----------")
     
     
 
     return render(request, "resAppTemp/checkout.html", {
-        "cart": cart,
+        # "cart": cart,
         "items": items,
         "total": total,
         "payment": payment,
@@ -245,38 +220,34 @@ def checkout(request):
     })
     
 
-
 from django.db import transaction
 
 @csrf_exempt
-def payment_success(request, id):
-    print(f"!!! SUCCESS VIEW ACCESSED !!! ID: {id} Method: {request.method}")
-    order = get_object_or_404(Order, id=id)
-    print('order id', order.id)
+def payment_success(request, user_id):
+    # print(f"!!! SUCCESS VIEW ACCESSED !!! ID: {id} Method: {request.method}")
 
     if request.method != "POST":
         return redirect("cart")
 
+    print("POST DATA:", request.POST)
+
     razorpay_payment_id = request.POST.get("razorpay_payment_id")
     razorpay_order_id = request.POST.get("razorpay_order_id")
     razorpay_signature = request.POST.get("razorpay_signature")
-    print(razorpay_signature,'-------razorpay_signature-------')
+    # print(razorpay_signature,'-------razorpay_signature-------')
 
-    print("POST DATA:", request.POST)
 
     if not razorpay_payment_id:
         messages.error(request, "Payment failed or cancelled")
-        order.payment_status = 'CANCELLED'
-        order.save()
         print('payment failed')
         return redirect("cart")
 
-    if order.razorpay_order_id != razorpay_order_id:
-        messages.error(request, "Order mismatch detected")
-        order.payment_status = 'CANCELLED'
-        order.save()
-        print('Order mis matched')
+
+    if not razorpay_order_id:
+        messages.error(request, "Payment failed or cancelled")
+        print('payment failed')
         return redirect("cart")
+
 
     client = razorpay.Client(
         auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
@@ -292,23 +263,29 @@ def payment_success(request, id):
 
     
     except razorpay.errors.SignatureVerificationError:
-        order.payment_status = 'CANCELLED'
-        order.save()
         messages.error(request, "Payment verification failed")
         return redirect("cart")
 
-   
 
-    cart = Cart.objects.filter(user=order.user).first()
+    try:
+        current_user = CustomUser.objects.get(id=user_id)
+    except User.DoesNotExist:
+        messages.error(request, "User session lost.")
+        return redirect("cart")
+
+    cart = Cart.objects.filter(user=current_user).first()
     print(cart)
     cart_items = list(cart.carts.select_related("product"))
 
     with transaction.atomic():
-        order.razorpay_payment_id = razorpay_payment_id
-        order.razorpay_signature = razorpay_signature
-        order.payment_status = "PROCESSING"
-        print(order,'------order')
-        order.save()
+        order = Order.objects.create(
+            user = current_user,
+            razorpay_order_id = razorpay_order_id,
+            razorpay_payment_id = razorpay_payment_id,
+            razorpay_signature = razorpay_signature,
+            total_amount = cart.total,
+            payment_status = 'SHIPPED'
+        )
 
         # Create order items
         for item in cart_items:
@@ -325,13 +302,12 @@ def payment_success(request, id):
     return render(request, "resAppTemp/payment_success.html", {'order': order}) 
 
 
-
 def orderView(request):
     orders = []
 
     if request.user.is_authenticated:
         orders = Order.objects.filter(user=request.user).prefetch_related("orders").order_by('-created_at')
-        print("orders", orders)
+        # print("orders", orders)
         
     return render(request, 'resAppTemp/order.html', {'orders': orders})
 
@@ -349,7 +325,32 @@ def orderDetailView(request, order_id):
     return render(request, 'resAppTemp/order_detail.html', {'order': order})
 
 
+def reorder_items(request, order_id):
+    if not request.user.is_authenticated:
+        return redirect('/login')
 
+    try:
+        order = Order.objects.get(id=order_id, user=request.user)
+        # print("Order Id", order.id)
+    
+    except Order.DoesNotExist:
+        messages.error(request, "Order Item lost.")
+        return redirect("order")
+    
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    order_items = list(order.orders.select_related('item'))
+    # print(order_items)
+
+    for food in order_items:
+        cart_item, create_item = CartItem.objects.get_or_create(
+            cart=cart,
+            product=food.item,
+            product_qty = food.quantity,
+            product_prc = food.price
+        )
+
+
+    return redirect('cart')
 
 
 

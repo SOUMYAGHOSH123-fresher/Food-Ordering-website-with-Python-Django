@@ -88,11 +88,7 @@ order food
 
                 <div class="d-flex justify-content-between fw-bold fs-5">
                     <span>Total</span>
-                    
-                    {% if total >= 99 %}
-                        <span class="text-danger">₹ {{ total }}</span>
-                    {% endif %}                        
-                        <span class="text-danger">₹ {{ total }}</span>
+                    <span class="text-danger">₹ {{ total }}</span>
                 </div>
 
                 <a href="{% url 'checkout' %}" class="btn btn-danger w-100 mt-4">
